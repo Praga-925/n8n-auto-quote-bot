@@ -1,0 +1,122 @@
+{
+    "name": "Telegram Quote Bot",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 7
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.2,
+        "position": [
+          -200,
+          -60
+        ],
+        "id": "69d58e8e-20d8-457a-b220-0d3ebcda2f0c",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "url": "https://zenquotes.io/api/random",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          20,
+          -60
+        ],
+        "id": "b35b2a4d-5c02-4730-83df-9b3eb7b3e8ca",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          220,
+          -60
+        ],
+        "id": "187f72e1-fe9e-4a73-bafe-df6257836864",
+        "name": "Code"
+      },
+      {
+        "parameters": {
+          "chatId": "6329925874 ",
+          "text": "={{ $('HTTP Request').item.json.q }}\n\n{{ $('HTTP Request').item.json.a }}",
+          "additionalFields": {}
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          440,
+          -60
+        ],
+        "id": "3f0524ed-3d78-46be-9d98-2e0a9d1e3690",
+        "name": "Telegram",
+        "webhookId": "5e580b86-4a28-4d4f-9b8a-398a281b3647",
+        "credentials": {
+          "telegramApi": {
+            "id": "S797IEI9ijEXaXOf",
+            "name": "Telegram account 2"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Telegram",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": true,
+    "settings": {
+      "executionOrder": "v1",
+      "timezone": "Asia/Kolkata",
+      "callerPolicy": "workflowsFromSameOwner"
+    },
+    "versionId": "dffc18e4-df14-4ad8-975d-868a1620ec02",
+    "meta": {
+      "templateCredsSetupCompleted": true,
+      "instanceId": "37a6c4217b662be151f2610bcf617e708aac0f2457a0dee7397fe9c7ad2331ee"
+    },
+    "id": "hxYYappbr9TEal57",
+    "tags": []
+  }

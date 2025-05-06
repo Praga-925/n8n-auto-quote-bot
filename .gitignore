@@ -1,0 +1,14 @@
+# Ignore Node.js dependencies (if any)
+node_modules/
+
+# Ignore environment variables
+.env
+
+# Ignore logs
+*.log
+
+# macOS file
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
