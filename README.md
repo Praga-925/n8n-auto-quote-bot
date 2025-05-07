@@ -106,15 +106,6 @@ n8n-auto-quote-bot/
 
 ---
 
-## 📸 Optional: Add Screenshots
-
-You can add screenshots of your n8n workflow here:
-
-```markdown
-![Workflow Screenshot](./assets/workflow-preview.png)
-```
-
----
 
 ## 📄 License
 
@@ -126,7 +117,6 @@ This project is licensed under the MIT License.
 
 * [n8n](https://n8n.io/)
 * [Telegram Bot API](https://core.telegram.org/bots)
-* [Type.fit Quote API](https://type.fit/api/quotes)
 
 ```
 
